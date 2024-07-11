@@ -1,528 +1,534 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yulia Galiulina - Software Engineer</title>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@400;700&display=swap" as="style" onload="this.rel='stylesheet'">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f9f9f9;
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            width: 100vw;
-        }
-        .experience-title {
-            margin-top: 0;
-        }
-        .container {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            position: relative;
-            z-index: 1;
-            max-width: 1200px;
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-            @media (min-width: 1024px) {
-                max-height: 850px;
-            }
+        :root {
+            --primary-color: #449747;
+            /* Pastel green */
+            --secondary-color: #f8bbd0;
+            /* Pastel pink */
+            --bg-color: #dfece0;
+            /* Light pastel green */
+            --text-color: #4a4a4a;
+            --card-bg: linear-gradient(145deg, #ffffff, #f0f0f0);
         }
-        .sidebar {
-            background: #005f5f;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            flex: 0 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .sidebar img {
-            border-radius: 50%;
-            width: 250px;
-            height: 250px;
-            object-fit: cover;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        }
-        .sidebar h1 {
-            margin: 10px 0;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.5em;
-        }
-        .sidebar p {
-            margin: 5px 0;
-            font-size: 1em;
-        }
-        .sidebar .contact-info {
-            font-size: 0.8em;
-            text-align: center;
-        }
-        .sidebar .contact-info p {
-            margin: 8px 0;
-            color: #B0E0E6;
-        }
-        .sidebar .contact-info a {
-            color: #FFD700;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        .sidebar .contact-info a:hover {
-            color: #FFFFFF;
-            text-decoration: underline;
-        }
-        .sidebar .skills {
-            text-align: center;
-            flex-wrap: wrap;
-            display: flex;
-            justify-content: center;
-        }
-        .sidebar .skills .skill {
-            background: white;
-            color: #005f5f;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            margin: 5px;
-            transition: background 0.3s, color 0.3s;
-        }
-        .sidebar .skills .skill:hover {
-            background: #006a6a;
-            color: white;
-        }
-        .content {
-            width: calc(100% - 40px);
-            padding: 20px;
-            flex: 1 1 auto;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            -webkit-overflow-scrolling: touch; 
-        }
-        .content h2 {
-            color: #005f5f;
-            margin-bottom: 20px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.6em;
-        }
-        .about-me {
-            padding-right: 20px;
-            margin-bottom: 15px;
-            font-size: 1em;
-            line-height: 1.6;
-        }
-        .experience-carousel {
-            font-size: 1em;
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 15px;
-            position: relative;
-            max-width: 85%;
-            align-self: center;
-            border: 1px solid black;
-        }
-        .job h3 {
-            margin-top: 0;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.2em;
-        }
-        .job ul {
-            padding-left: 0;
-            list-style: none;
-        }
-        .job ul li {
-            padding-left: 1.5em;
-            text-indent: -1.5em;
-            margin-bottom: 10px;
-        }
-        .job ul li::before {
-            content: "\f00c"; /* FontAwesome check icon */
-            font-family: 'Font Awesome 5 Free';
-            font-weight: 900;
-            padding-right: 10px;
-            color: #005f5f; /* Match tick icon color with sidebar background */
-        }
-        .footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #f0f8ff;
-            font-size: 0.9em;
-        }
-        .footer p {
-            margin: 0;
-        }
-        .bg-art {
-            position: absolute;
+
+        #animation-canvas {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden;
-            z-index: -1;
+            opacity: .3;
         }
-        .shape {
-            position: absolute;
-            background: #005f5f;
-        }
-        /* Top left corner shapes */
-        .shape1 { width: 100px; height: 100px; top: 20px; left: 30px; clip-path: polygon(0 0, 100% 0, 50% 100%); background: #6ac5b9; }
-        .shape2 { width: 120px; height: 120px; top: 120px; left: 50px; clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); background: #8fd9a8; }
-        .shape3 { width: 140px; height: 140px; top: 60px; left: 200px; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); background: #b0e7b1; }
-        .shape4 { width: 160px; height: 160px; top: 80px; left: 260px; clip-path: polygon(0 0, 50% 0, 100% 100%, 0 100%); background: #d1f0b9; }
-        .shape5 { width: 180px; height: 180px; top: 200px; left: 100px; clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); background: #e4f8c2; }
-        /* Bottom right corner shapes */
-        .shape6 { width: 100px; height: 100px; bottom: 30px; right: 30px; clip-path: polygon(0 0, 100% 0, 50% 100%); background: #8fc5b9; }
-        .shape7 { width: 120px; height: 120px; bottom: 100px; right: 200px; clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); background: #7fd9a8; }
-        .shape8 { width: 140px; height: 140px; bottom: 60px; right: 100px; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); background: #90e7b1; }
-        .shape9 { width: 160px; height: 160px; bottom: 120px; right: 300px; clip-path: polygon(0 0, 50% 0, 100% 100%, 0 100%); background: #a1f0b9; }
-        .shape10 { width: 180px; height: 180px; bottom: 200px; right: 50px; clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); background: #b2f8c2; }
-        .download-btn {
-            margin-top: 10px;
-            padding: 10px 20px;
-            background-color: #FFD700;
-            color: #005f5f;
-            font-size: .9em;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        .download-btn:hover {
-            background-color: #FFFFFF;
-            color: #005f5f;
-        }
-        .slick-prev, .slick-next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: #005f5f;
-            border-radius: 50%;
-            width: 40px; /* Increased size */
-            height: 40px; /* Increased size */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 2;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .slick-prev:hover, .slick-next:hover {
-            background: #006a6a;
-        }
-        .slick-prev:before, .slick-next:before {
-            font-size: 20px; /* Increased size */
-            line-height: 1;
-            color: white;
-            opacity: 1;
-            content: ' ';
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .slick-prev::after {
-            content: '‹'; /* Left chevron symbol */
-            font-size: 30px; /* Increased size */
-            color: white;
-        }
-        .slick-next::after {
-            content: '›'; /* Right chevron symbol */
-            font-size: 30px; /* Increased size */
-            color: white;
-        }
-        @media (min-width: 1024px) {
-            .container {
-                flex-direction: row;
-                background: white;
-                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-            }
-            .sidebar {
-                width: calc(30% - 40px);
-                height: auto;
-            }
 
-            .content {
-                width: calc(70% - 40px);
-            }
-            .slick-slide {
-                padding: 0 40px;
-            }
-            
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
-        @media (max-width: 767px) {
-            .container {
-                flex-direction: column;
-            }
-            .sidebar {
-                padding: 10px;
-                height: auto;
-            }
-            .sidebar img {
-                width: 150px;
-                height: 150px;
-            }
-            .sidebar h1 {
-                font-size: 1em;
-            }
-            .content {
-                padding: 10px;
-                overflow-y: visible;
-                width: calc(100% - 20px);
-            }
-            .content h2 {
-                font-size: 1.2em;
-            }
-            .about-me, .experience-carousel {
-                padding: 10px 20px;
-            }
-            .job h3 {
-                font-size: 1em;
-            }
-        }
-        .stepper {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            padding-left: 0;
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
             position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+
+            nav {
+                width: 100%;
+                max-width: 500px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 20px 0;
+                opacity: 0;
+                animation: fadeIn 1s ease-out forwards;
+            }
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        nav a {
             margin-left: 20px;
-        }
-        .step {
-            display: flex;
-            flex-direction: column;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: color 0.3s ease;
             position: relative;
         }
-        .step::before {
+
+        nav a::after {
             content: '';
             position: absolute;
-            left: 6px;
-            top: 33px;
-            bottom: -19px;
-            width: 2px;
-            background-color: #005f5f;
-            transition: height 0.3s;
-            z-index: 10;
+            width: 100%;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--secondary-color);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
         }
-    
-        .step:last-child::before {
-            bottom: auto;
-            height: 0;
-        }
-        .step input[type="radio"] {
-            display: none;
-        }
-        .step label {
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            padding: 5px;
-            margin-left: -10px;
-            transition: background 0.3s;
-        }
-        .step label:hover {
-            background: #b2ebf2;
-        }
-        .step label::before {
-            content: "";
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 2px solid #005f5f;
-            border-radius: 50%;
-            margin-right: 10px;
-            background: white;
-            flex-shrink: 0;
-            position: relative;
-        }
-        .step label::before {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .step label[for="step1"]::before {
-            content: '\f007'; /* FontAwesome user icon */
-            font-family: 'Font Awesome 5 Free';
-            font-weight: 900;
-            color: #005f5f;
-        }
-        .step label[for="step2"]::before {
-            content: '\f004'; /* FontAwesome heart icon */
-            font-family: 'Font Awesome 5 Free';
-            font-weight: 900;
-            color: #005f5f;
-        }
-        .step input[type="radio"]:checked + label {
-            background: #6ac5b9; /* Color of the leftmost triangle shape */
-        }
-        .step input[type="radio"]:checked + label::before {
-            background: #005f5f;
-            color: white;
-        }
-        .step input[type="radio"]:checked + label + .step-content {
-            display: block;
-        }
-        .step-content {
-            display: none;
-            margin-top: 10px;
-            padding: 0;
-            margin-left: 30px; /* Add indentation to text inside the stepper */
 
-            p {
-                margin: 0;
-                line-height: 1.4;
+        nav a:hover::after {
+            transform: scaleX(1);
+        }
+
+        .hero-text {
+            font-size: 20px;
+            max-width: 600px;
+
+            h1 {
+                font-size: 2em;
             }
         }
-        .step input[type="radio"]:checked + label + .step-content {
-            display: block;
+
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            opacity: 0;
+            animation: slideUp 1s ease-out 0.5s forwards;
+            max-width: 1000px;
+            width: 100%;
         }
-        .step input[type="radio"]:checked ~ .step::before {
-            height: 20px;
-            top: 20px;
-            bottom: auto;
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        .step input[type="radio"]:checked ~ .step:last-child::before {
-            display: none;
+
+        .hero-text {
+            /* flex: 1; */
+        }
+
+        .hero-image {
+            perspective: 1000px;
+        }
+
+        .hero-image img {
+            max-width: 300px;
+            border-radius: 50%;
+            box-shadow: 0 10px 30px rgba(129, 199, 132, 0.3);
+            transition: transform 0.5s ease;
+            animation: floatAnimation 3s ease-in-out infinite;
+        }
+
+        @keyframes floatAnimation {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .hero-image:hover img {
+            animation-play-state: paused;
+            transform: rotateY(10deg);
+        }
+
+        h1,
+        h2 {
+            color: var(--primary-color);
+        }
+
+        .accent-text {
+            color: var(--secondary-color);
+            font-weight: 600;
+            display: inline-block;
+            animation: colorChange 5s infinite alternate;
+        }
+
+        @keyframes colorChange {
+            0% {
+                color: var(--secondary-color);
+            }
+
+            50% {
+                color: var(--primary-color);
+            }
+
+            100% {
+                color: var(--secondary-color);
+            }
+        }
+
+        .wavy-line {
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wavy-line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+            animation: wavyAnimation 2s infinite;
+        }
+
+        @keyframes wavyAnimation {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        .section {
+            margin-top: 0;
+            padding: 10px;
+            border-radius: 20px;
+            transition: all 0.5s ease;
+            opacity: 0;
+            transform: translateY(50px);
+            width: 100%;
+        }
+
+        .section.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .skills-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .skill {
+            background: var(--card-bg);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+
+        .skill:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .job {
+            background: #e6f7f2;
+            padding: 25px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        .job.animate {
+            animation: popIn 0.5s ease-out forwards;
+        }
+
+        @keyframes popIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .job:hover {
+            transform: translateY(-5px);
         }
     </style>
 </head>
+
 <body>
-    <div class="bg-art">
-        <div class="shape shape1"></div>
-        <div class="shape shape2"></div>
-        <div class="shape shape3"></div>
-        <div class="shape shape4"></div>
-        <div class="shape shape5"></div>
-        <div class="shape shape6"></div>
-        <div class="shape shape7"></div>
-        <div class="shape shape8"></div>
-        <div class="shape shape9"></div>
-        <div class="shape shape10"></div>
-    </div>
-    <div class="container" role="main">
-        <aside class="sidebar">
-            <img src="https://avatars.githubusercontent.com/u/25671530?v=4" alt="Profile Picture of Yulia Galiulina">
-            <h1>Yulia Galiulina</h1>
-            <p>Software Engineer</p>
-            <div class="contact-info">
-                <p><i class="fas fa-envelope"></i> <a href="mailto:92juliegal@gmail.com">92juliegal@gmail.com</a></p>
-                <p><i class="fas fa-link"></i> <a href="https://www.linkedin.com/in/yulia-galiulina/" target="_blank">LinkedIn</a></p>
-                <p><i class="fas fa-link"></i> <a href="https://github.com/YuliaGaliulina" target="_blank">GitHub</a></p>
+    <div class="container">
+        <header>
+            <nav>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#experience">Experience</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <div class="hero-image">
+                <img src="https://avatars.githubusercontent.com/u/25671530?v=4" alt="Yulia Galiulina">
             </div>
-            <h2>Skills</h2>
-            <section class="skills">
-                <div class="skill">Angular 2+</div>
-                <div class="skill">JavaScript</div>
-                <div class="skill">TypeScript</div>
-                <div class="skill">RxJS</div>
-                <div class="skill">HTML & CSS</div>
-                <div class="skill">Bootstrap</div>
-                <div class="skill">NgRx</div>
-                <div class="skill">Jasmine / Karma</div>
-                <div class="skill">Web Components</div>
-                <div class="skill">Keycloak</div>
-            </section>
-            <a href="https://www.dropbox.com/scl/fi/zjf2t17g1arsxl645138o/Yulia_Galiulina_-_Software_Engineer.pdf?rlkey=7690432rkqdu8w8y8gkickaxv&st=7m7q0f1h&dl=1" class="download-btn">Download CV</a>
-        </aside>
-        <main class="content">
-            <h2>Hello and welcome to my page! Let’s get acquainted.</h2>
-            <section class="about-me">
-                <div class="stepper">
-                    <div class="step">
-                        <input type="radio" name="step" id="step1" checked>
-                        <label for="step1">Professional Summary</label>
-                        <div class="step-content">
-                            <p>I’m Yulia, a passionate software engineer with 6 years of experience. I have hands-on experience with technologies such as Angular, JavaScript, TypeScript, HTML, and CSS. I strive for quality in both writing code and delivering features. I’m known for my great problem-solving skills and efficiency in both teamwork and independent tasks. When it comes to taking responsibility and ownership of tasks, I’m the one to rely on!</p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <input type="radio" name="step" id="step2">
-                        <label for="step2">Hobbies</label>
-                        <div class="step-content">
-                            <p>In my free time, I enjoy hiking in nature, trying new restaurants, and reading books (though many remain unfinished!). I like activities that require a great level of focus and tranquility, such as crocheting and painting. At the same time, I don’t shy away from social activities—I regularly attend English club meetups where I enjoy practicing my English.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <h2 class="experience-title">My Experience</h2>
-            <section class="experience-carousel">
+            <div class="hero-text">
+                <h1>Hey there! I'm <span class="accent-text">Yulia Galiulina</span></h1>
+                <p>A code-loving, problem-solving software engineer on a mission to make the digital world a bit more
+                    awesome! 🚀</p>
+                <div class="wavy-line"></div>
+                <p>With 6 years of turning coffee into code, I've mastered the art of crafting sleek and efficient web
+                    applications. Let's create something amazing together!</p>
+                <a href="#contact" class="cta-button">Let's Connect!</a>
+            </div>
+
+        </section>
+
+        <section id="about" class="section">
+            <h2>A Bit About Me</h2>
+            <div class="wavy-line"></div>
+            <p>When I'm not busy debugging or deploying, you'll find me hiking in nature, taste-testing at new
+                restaurants, or diving into a good book (even if I don't always finish them). I'm all about that
+                work-life balance – juggling code during the day and crochet needles by night. Oh, and I'm always up for
+                a chat at English club meetups. Variety is the spice of life, right?</p>
+        </section>
+
+        <section id="skills" class="section">
+            <h2>My Toolkit</h2>
+            <div class="wavy-line"></div>
+            <p>Here are the technologies I love to play with:</p>
+            <div class="skills-cloud">
+                <span class="skill">Angular 2+</span>
+                <span class="skill">JavaScript</span>
+                <span class="skill">TypeScript</span>
+                <span class="skill">RxJS</span>
+                <span class="skill">HTML & CSS</span>
+                <span class="skill">Bootstrap</span>
+                <span class="skill">NgRx</span>
+                <span class="skill">Jasmine / Karma</span>
+            </div>
+        </section>
+
+        <section id="experience" class="section">
+            <h2>Where I've Left My Mark</h2>
+            <div class="wavy-line"></div>
+            <div class="experience-grid">
                 <div class="job">
-                    <h3>Software Engineer, EPAM</h3>
-                    <p><strong>2021 — 2024</strong></p>
-                    <ul>
-                        <li>Worked on front end applications using Angular 11 and NgRx.</li>
-                        <li>Ensured quality by writing unit tests with Jasmine/Karma.</li>
-                        <li>Performed peer code review.</li>
-                        <li>Participated in discussions with the client and clarified requirements.</li>
-                        <li>Translated business requirements into well described and decomposed tasks.</li>
-                        <li>Improved applications' accessibility and mobile experience.</li>
-                        <li>Helped new customers go live and tailored code to their needs.</li>
-                    </ul>
+                    <h3>EPAM</h3>
+                    <p>2021 - 2024</p>
+                    <p>Crafted awesome front-end experiences, turned coffee into code, and made accessibility cool
+                        again!</p>
                 </div>
                 <div class="job">
-                    <h3>Software Engineer, MTS</h3>
-                    <p><strong>2019 — 2020</strong></p>
-                    <ul>
-                        <li>Contributed to launching a brand new startup project using Angular.</li>
-                        <li>Maintained a custom UI library.</li>
-                        <li>Enhanced performance and eliminated bugs in a fast-paced environment.</li>
-                        <li>Performed peer code review.</li>
-                        <li>Actively collaborated with colleagues within a Scrum team.</li>
-                        <li>Took leadership in delivering several features.</li>
-                    </ul>
+                    <h3>MTS</h3>
+                    <p>2019 - 2020</p>
+                    <p>Helped birth a startup, juggled custom UI libraries, and became a Scrum ninja!</p>
                 </div>
                 <div class="job">
-                    <h3>Frontend Developer, Radius</h3>
-                    <p><strong>2018 — 2018</strong></p>
-                    <ul>
-                        <li>Built a prototype for a startup project with Angular 5, Angular Material.</li>
-                        <li>Ensured quality by writing unit tests with Jasmine/Karma.</li>
-                        <li>Worked within Kanban framework constantly delivering new features.</li>
-                        <li>Supported newcomers providing technical guidance.</li>
-                    </ul>
+                    <h3>Radius</h3>
+                    <p>2018</p>
+                    <p>Built prototypes faster than you can say "Angular Material" and mentored newbies like a boss!</p>
                 </div>
                 <div class="job">
-                    <h3>Frontend Developer, Upwork | Self-employed</h3>
-                    <p><strong>2017 — 2018</strong></p>
-                    <ul>
-                        <li>Built a brand new custom dashboard with Angular 4 and Firebase.</li>
-                        <li>Created landing pages with responsive design and Angular animations.</li>
-                        <li>Built reusable components with custom design.</li>
-                        <li>Regularly communicated with the client to clarify requirements.</li>
-                        <li>Worked on tasks independently while exercising self-management.</li>
-                    </ul>
+                    <h3>Upwork</h3>
+                    <p>2017 - 2018</p>
+                    <p>Freelanced my way through custom dashboards and responsive designs. Client whisperer
+                        extraordinaire!</p>
                 </div>
-            </section>
-        </main>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2>Let's Create Something Awesome!</h2>
+            <div class="wavy-line"></div>
+            <p>Feeling inspired? Let's connect and make the web a better place, one line of code at a time!</p>
+            <p>📧 <a href="mailto:92juliegal@gmail.com">92juliegal@gmail.com</a></p>
+            <p>🔗 <a href="https://www.linkedin.com/in/yulia-galiulina/" target="_blank">LinkedIn</a></p>
+            <p>💻 <a href="https://github.com/YuliaGaliulina" target="_blank">GitHub</a></p>
+            <a href="https://www.dropbox.com/scl/fi/zjf2t17g1arsxl645138o/Yulia_Galiulina_-_Software_Engineer.pdf?rlkey=7690432rkqdu8w8y8gkickaxv&st=7m7q0f1h&dl=1"
+                class="cta-button">Grab My CV</a>
+        </section>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
     <script>
-        $(document).ready(function(){
-            $('.experience-carousel').slick({
-                infinite: true,
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                arrows: true,
-                dots: true,
-                autoplay: true,
-                autoplaySpeed: 3000,
-                speed: 800,
-                cssEase: 'ease',
-                prevArrow: '<button type="button" class="slick-prev" aria-label="Previous"></button>',
-                nextArrow: '<button type="button" class="slick-next" aria-label="Next"></button>'
+        // Intersection Observer for section animations
+        const sections = document.querySelectorAll('.section');
+        const jobs = document.querySelectorAll('.job');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    observer.unobserve(entry.target);
+                }
             });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        jobs.forEach(job => {
+            observer.observe(job);
+        });
+    </script>
+    <canvas id="animation-canvas"></canvas>
+    <div class="container">
+        <!-- The HTML content remains the same as in version 12 -->
+    </div>
+
+    <script>
+        // Intersection Observer code remains the same as in version 12
+
+        // Background Animation
+        const canvas = document.getElementById('animation-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+        const colors = ['rgba(0, 168, 107, 0.5)', 'rgba(255, 215, 0, 0.5)', 'rgba(240, 255, 240, 0.5)'];
+
+        class Particle {
+            constructor(x, y, radius, color) {
+                this.x = x;
+                this.y = y;
+                this.radius = radius;
+                this.color = color;
+                this.velocity = {
+                    x: (Math.random() - 0.5) * 0.5,
+                    y: (Math.random() - 0.5) * 0.5
+                };
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+
+            update() {
+                this.draw();
+
+                if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
+                    this.velocity.x = -this.velocity.x;
+                }
+                if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
+                    this.velocity.y = -this.velocity.y;
+                }
+
+                this.x += this.velocity.x;
+                this.y += this.velocity.y;
+            }
+        }
+
+        function init() {
+            for (let i = 0; i < 50; i++) {
+                const radius = Math.random() * 10 + 10;
+                const x = Math.random() * (canvas.width - radius * 2) + radius;
+                const y = Math.random() * (canvas.height - radius * 2) + radius;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                particles.push(new Particle(x, y, radius, color));
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(particle => {
+                particle.update();
+            });
+        }
+
+        init();
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            init();
         });
     </script>
 </body>
+
 </html>
