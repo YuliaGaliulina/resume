@@ -241,7 +241,6 @@
         }
 
         .hero {
-            margin-top: 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -364,7 +363,7 @@
 
         .section {
             margin-top: 0;
-            padding: 10px;
+            padding: 0 10px 10px;
             border-radius: 20px;
             transition: all 0.5s ease;
             opacity: 0;
@@ -613,6 +612,62 @@
                 flex-direction: column;
             }
         }
+
+        .images {
+            height: 150px;
+            display: flex;
+            justify-content: space-around;
+
+            img {
+                height: 100%;
+            }
+        }
+
+        .image-container {
+            width: 113px;
+            transition: transform 0.5s ease;
+        }
+
+        .image-container.landscape {
+            width: 200px;
+        }
+
+        .image-container img {
+            height: 100%;
+            opacity: .7;
+            position: relative;
+        }
+
+        .image-container:hover {
+            transform: scale(1.6);
+            z-index: 10;
+            position: relative;
+        }
+
+        .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            width: calc(100% - 20px);
+            z-index: 10;
+            text-align: center;
+        }
+
+        .image-container:hover .caption {
+            opacity: 1;
+        }
+
+        .image-container:hover img {
+            opacity: 1;
+        }
+
     </style>
 </head>
 
@@ -653,41 +708,48 @@
         <section id="about" class="section">
             <h2>A Bit About Me</h2>
             <div class="wavy-line"></div>
-            <p>Passionate coder with diverse interests. Balancing tech career with creative hobbies</p>
-            <div class="icon-list">
-                <div class="icon-item">
-                    <svg viewBox="0 0 24 24">
-                        <path
-                            d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm4 5.28c-1.23-.37-2.22-1.17-2.8-2.18l-1-1.6c-.41-.65-1.11-1-1.84-1-.78 0-1.59.5-1.78 1.44S7 23 7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3c1 1.15 2.41 2.01 4 2.34V23H19V9h-1.5v1.78zM7.43 13.13l-2.12-.41c-.54-.11-.9-.63-.79-1.17l.76-3.93c.21-1.08 1.26-1.79 2.34-1.58l1.16.23-1.35 6.86z" />
-                    </svg>
-                    <span>Nature Hiker</span>
+            <div class="images">
+                <div class="image-container">
+                    <img src="https://www.dropbox.com/scl/fi/stsnfhfnjxj2wr4lxx918/jpeg-optimizer_21FF14F6-337E-4797-AEDA-154D69CA6429_1_105_c-1.jpeg?rlkey=w45wh2mjjnv3if7e9r1a9txdq&st=t8sjcmnz&dl=1"
+                        alt="">
+                    <div class="caption">Coffee brings a smile to my face 😐</div>
                 </div>
-                <div class="icon-item">
-                    <svg viewBox="0 0 24 24">
-                        <path
-                            d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z" />
-                    </svg>
-                    <span>Food Explorer</span>
-                </div>
-                <div class="icon-item">
-                    <svg viewBox="0 0 24 24">
-                        <path
-                            d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z" />
-                    </svg>
-                    <span>Avid Reader</span>
-                </div>
-                <div class="icon-item yarn">
-                    <svg viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="6" />
-                        <path
-                            d="M12 18c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6zm0-10c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4z" />
-                        <path d="M12 8v8M8 12h8" />
-                        <path d="M18 6s-2 2-6 2-6-2-6-2" />
-                    </svg>
-                    <span>Crochet Enthusiast</span>
-                </div>
-            </div>
+                <div class="image-container">
+                    <img src="https://www.dropbox.com/scl/fi/6xxnhb9ymwebbqkhr6m9q/jpeg-optimizer_38C273DF-384B-4F91-BCFE-0527C8052AC0_4_5005_c-1.jpeg?rlkey=rnq4aeg0g2pevhcf2nvd2op8e&st=etbeqmwn&dl=1"
+                        alt="">
 
+                    <div class="caption">I like potatoes in any shape</div>
+                </div>
+                <div class="image-container">
+                    <img src="https://www.dropbox.com/scl/fi/5cfbscndk4i3y04e4wb5a/jpeg-optimizer_239988FA-92E4-427A-8AE6-E598BFC37A64-1.jpeg?rlkey=hmse7g6xmn27lm4rnqq62evax&st=gnsgw521&dl=1"
+                        alt="">
+
+                    <div class="caption">AFK</div>
+                </div>
+                <div class="image-container landscape">
+                    <img src="https://www.dropbox.com/scl/fi/f31a5yu1qlj13b0jb9z3n/jpeg-optimizer_063911E4-ED8B-455B-9EC8-1FEFC81383DA_1_105_c-1.jpeg?rlkey=4wy5agdp3xy12xn7rgwt718lc&st=awwi6sxi&dl=1"
+                        alt="">
+
+                    <div class="caption">I'm an aspiring artist too 🖌️</div>
+                </div>
+                <div class="image-container">
+                    <img src="https://www.dropbox.com/scl/fi/6xxnhb9ymwebbqkhr6m9q/jpeg-optimizer_38C273DF-384B-4F91-BCFE-0527C8052AC0_4_5005_c-1.jpeg?rlkey=rnq4aeg0g2pevhcf2nvd2op8e&st=c8rrgyny&dl=1"
+                        alt="">
+                    <div class="caption">Like I said, I like potatoes in any shape</div>
+                </div>
+                <div class="image-container">
+                    <img src="https://www.dropbox.com/scl/fi/te54mlkv0rb190hkq6cy5/jpeg-optimizer_8B966A86-88CD-4C25-85BD-7C82F58726A7_1_201_a-2.jpeg?rlkey=8baeygzd41gabqzpytecmnscd&st=gjrl44r8&dl=1"
+                        alt="">
+                    <div class="caption">I crocheted the Mall Wizard! 🧙‍♂️</div>
+                </div>
+                <div class="image-container">
+                    <img src="https://www.dropbox.com/scl/fi/yc1l8gur6l4qic0gnl12y/jpeg-optimizer_21A044B4-EC2B-42A7-B612-9EE836167187_1_105_c-1.jpeg?rlkey=gctuhmh5diw2nxm9fd9iez83a&st=6b8u6t5v&dl=1"
+                        alt="">
+                    <div class="caption">I'm an avid reader 😅</div>
+                </div>
+
+            </div>
+ 
 
         </section>
 
